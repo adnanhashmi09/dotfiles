@@ -9,6 +9,8 @@ source "${ZINIT_HOME}/zinit.zsh"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+export N_PREFIX=$HOME/.n
+export PATH=$N_PREFIX/bin:$PATH
 # Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
@@ -60,11 +62,11 @@ alias vim='nvim'
 alias c='clear'
 alias python='python3'
 alias tmux='tmux -u'
-alias dbtun='ssh -i /home/adnan/data/Code/middleware/db_pk -L localhost:5433:rds-staging-proxy.proxy-cupgmfepxjnb.ap-south-1.rds.amazonaws.com:5432 ec2-user@10.0.1.192'
+alias tmux='tmux -u'
+alias v='nvim'
+
 alias dbmu='docker run --rm -it --network=host -v "$(pwd)/db:/db" ghcr.io/amacneil/dbmate --url "postgres://postgres:postgres@localhost:9221/monocleth?sslmode=disable" up'
 alias dbmn='docker run --rm -it --network=host -v "$(pwd)/db:/db" ghcr.io/amacneil/dbmate new'
-alias tmux='tmux -u'
-alias vpn='sudo openvpn --config /home/adnan/Documents/main_aws/scripts/adnan.ovpn --auth-user-pass /home/adnan/Documents/main_aws/scripts/adnan.pass.txt'
 
 # ls
 alias l='ls -lh'
@@ -74,24 +76,23 @@ alias lm='ls -m'
 alias lr='ls -R'
 alias lg='ls -l --group-directories-first'
 
-# TEMPORARY ENV VARIABLES FOR MIDDLEWARE
-# export ENABLE_DEPLOY_TYPES="API,WORKER,CRON"
-# export MHQ_PROJECT_VERSION_QUEUE="test"
-# export MONOCLE_CAL_SYNC_QUEUE="test2"
-# export MONOCLE_DATA_MIGRATION_QUEUE="test"
-# export MONOCLE_INCIDENT_SERVICE_SYNC_QUEUE="test"
-# export MONOCLE_NOTIFICATION_QUEUE="test"
-# export MONOCLE_OPENSOURCE_REPO_QUEUE="test"
-# export MONOCLE_OPENSOURCE_SVG_QUEUE="test"
-# export MONOCLE_PLAYBOOK_RULE_QUEUE="test"
-# export MONOCLE_PROJECT_SYNC_QUEUE="project_sync"
-# export MONOCLE_REPO_SYNC_QUEUE="test"
-# export MONOCLE_SPRINT_CHECK_SYNC_QUEUE="test"
-# export MONOCLE_SPRINT_SYNC_QUEUE="test"
-# export MONOCLE_WORKFLOW_QUEUE="test"
-# export MONOCLETH_DB_HOST="localhost"
-# export MONOCLETH_DB_PORT="6543"
-# export MHQ_INCIDENT_TEAMS_SYNC_QUEUE="test"
+# git
+alias gk='git checkout'
+alias gp='git push origin'
+alias gc='git commit -m'
+alias gs='git status'
+alias gst='git stash'
+
+#docker
+alias dk='docker'
+alias dc='docker compose'
+
+#vpn
+alias vpn='sudo openvpn --config adnan.ovpn --auth-user-pass ./adnan.pass.txt'
+
+# lazygit
+alias lg='lazygit'
+
 
 # Shell integrations
 eval "$(fzf --zsh)"
@@ -102,4 +103,13 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-export PATH=$PATH:$HOME/opt/venv/bin
+export PATH=$PATH:$HOME/opt/venv/bin:$HOME/.local/bin
+export PATH=/usr/local/bin:$PATH
+
+# aws local
+#export AWS_ACCESS_KEY_ID="test"
+#export AWS_SECRET_ACCESS_KEY="test"
+export AWS_DEFAULT_REGION="ap-south-1"
+
+eval "$(ssh-agent -s)" > /dev/null 2>&1
+ssh-add ~/.ssh/githubssh > /dev/null 2>&1

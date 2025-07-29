@@ -8,6 +8,8 @@ vim.o.incsearch = true
 vim.o.hlsearch = false
 vim.o.showmode = true
 
+vim.g.lazyvim_prettier_needs_config = false
+
 -- disable virtual_text
 vim.diagnostic.config({ virtual_text = false, float = {
   source = true,
@@ -21,6 +23,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 
 vim.g.lazyvim_python_lsp = "pyright"
 vim.g.lazyvim_python_ruff = "ruff"
+-- vim.g.lazyvim_rust_diagnostics = "rust-analyzer"
 
 vim.fn.sign_define(
   "DapBreakpoint",

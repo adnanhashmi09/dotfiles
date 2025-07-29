@@ -12,6 +12,12 @@ map("n", "<c-l>", "<cmd>TmuxNavigateRight<cr>", { desc = "Move to right window i
 map("n", "<c-j>", "<cmd>TmuxNavigateDown<cr>", { desc = "Move to top window including tmux" })
 map("n", "<c-k>", "<cmd>TmuxNavigateUp<cr>", { desc = "Move to bottom window including tmux" })
 
+vim.keymap.set(
+  "n",
+  "<leader>gg",
+  ":!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazygit <CR><CR>",
+  { silent = true }
+)
 local harpoon = require("harpoon")
 
 -- REQUIRED
@@ -54,3 +60,18 @@ end
 vim.keymap.set("n", "<leader>ht", function()
   toggle_telescope(harpoon:list())
 end, { desc = "Open harpoon window" })
+
+require("which-key").add({
+  { "<leader>r", icon = "🦀", group = "Rust" },
+  { "<leader>rc", icon = "📦", group = "Crates" },
+  { "<leader>rcu", icon = "⬆️", group = "Upgrade crates" },
+  { "<leader>rcd", icon = "📚", group = "Crate documentation" },
+})
+
+vim.keymap.set("n", "<leader>rcd", function()
+  require("crates").open_documentation()
+end, {})
+
+vim.keymap.set("n", "<leader>rcu", function()
+  require("crates").upgrade_all_crates()
+end, {})

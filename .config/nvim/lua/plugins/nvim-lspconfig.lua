@@ -90,6 +90,17 @@ return {
             },
           },
         },
+        -- rust_analyzer = {
+        --   enabled = true,
+        --   filetype = { "rust", "*.rs" },
+        --   settings = {
+        --     ["rust-analyzer"] = {
+        --       cargo = {
+        --         allFeatures = true,
+        --       },
+        --     },
+        --   },
+        -- },
       },
       -- you can do any additional lsp server setup here
       -- return true if you don't want this server to be setup with lspconfig
@@ -101,6 +112,10 @@ return {
         -- end,
         -- Specify * to use this function as a fallback for any server
         -- ["*"] = function(server, opts) end,
+        -- #INFO: Disable so that it doesn't conflict with rustacean.vim
+        rust_analyzer = function()
+          return true
+        end,
       },
     }
     return ret
