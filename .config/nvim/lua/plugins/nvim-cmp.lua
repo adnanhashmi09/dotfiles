@@ -5,7 +5,7 @@ return {
     local defaults = require("cmp.config.default")()
     local auto_select = true
     return {
-      auto_brackets = {}, -- configure any filetype to auto add brackets
+      auto_brackets = {},
       completion = {
         completeopt = "menu,menuone,noinsert" .. (auto_select and "" or ",noselect"),
       },
@@ -19,7 +19,7 @@ return {
         ["<Tab>"] = LazyVim.cmp.confirm({ select = auto_select }),
         ["<CR>"] = LazyVim.cmp.confirm({ select = auto_select }),
         ["<C-y>"] = LazyVim.cmp.confirm({ select = true }),
-        ["<S-CR>"] = LazyVim.cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ["<S-CR>"] = LazyVim.cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace }),
         ["<C-CR>"] = function(fallback)
           cmp.abort()
           fallback()
@@ -31,9 +31,9 @@ return {
       }, {
         { name = "buffer" },
       }),
-      experimental = {
+      experimental = vim.tbl_deep_extend("force", defaults.experimental or {}, {
         ghost_text = false,
-      },
+      }),
       sorting = defaults.sorting,
     }
   end,

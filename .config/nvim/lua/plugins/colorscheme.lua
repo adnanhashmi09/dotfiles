@@ -1,5 +1,7 @@
 return {
   "folke/tokyonight.nvim",
   lazy = true,
-  opts = { style = "night" },
+  opts = { style = "night", integrations = {
+    which_key = true,
+  } },
 }

@@ -9,8 +9,6 @@ source "${ZINIT_HOME}/zinit.zsh"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-export N_PREFIX=$HOME/.n
-export PATH=$N_PREFIX/bin:$PATH
 # Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
@@ -113,3 +111,9 @@ export AWS_DEFAULT_REGION="ap-south-1"
 
 eval "$(ssh-agent -s)" > /dev/null 2>&1
 ssh-add ~/.ssh/githubssh > /dev/null 2>&1
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export N_PREFIX="$HOME/.n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+
+eval "$(zoxide init --cmd cd zsh)"

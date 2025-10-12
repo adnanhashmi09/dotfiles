@@ -7,8 +7,11 @@ return {
       server = {
         settings = {
           ["rust-analyzer"] = {
+            procMacro = {
+              enable = true,
+            },
             cargo = {
-              target = "x86_64-unknown-linux-gnu",
+              -- target = "aarch64-unknown-linux-musl",
               allFeatures = true,
             },
           },
