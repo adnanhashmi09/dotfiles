@@ -11,7 +11,7 @@ return {
               enable = true,
             },
             cargo = {
-              -- target = "aarch64-unknown-linux-musl",
+              target = "aarch64-unknown-linux-musl",
               allFeatures = true,
             },
           },

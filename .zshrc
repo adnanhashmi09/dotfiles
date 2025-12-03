@@ -117,3 +117,4 @@ ssh-add ~/.ssh/githubssh > /dev/null 2>&1
 export N_PREFIX="$HOME/.n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 
 eval "$(zoxide init --cmd cd zsh)"
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"

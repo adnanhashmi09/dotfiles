@@ -3,6 +3,7 @@ return {
   opts = {
     ensure_installed = {
       "clangd",
+      "codelldb",
       "css-lsp",
       "debugpy",
       "docker-compose-language-service",
