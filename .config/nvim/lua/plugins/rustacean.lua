@@ -7,12 +7,18 @@ return {
       server = {
         settings = {
           ["rust-analyzer"] = {
+            -- Performance optimizations
             procMacro = {
-              enable = true,
+              enable = false, -- Disable for better performance, enable if needed
             },
             cargo = {
+              buildScripts = { enable = false },
               target = "aarch64-unknown-linux-musl",
-              allFeatures = true,
+              features = {}, -- Only analyze default features
+            },
+            -- Additional performance optimizations
+            cache = {
+              warmup = true, -- Disable cache warmup for faster startup
             },
           },
         },

@@ -13,5 +13,12 @@ return {
       completion = true,
       hover = true,
     },
+    -- Performance optimizations
+    null_ls = {
+      enabled = false, -- Disable null-ls integration to avoid conflicts
+    },
+    popup = {
+      autofocus = false, -- Don't autofocus popup to avoid interruptions
+    },
   },
 }
